@@ -7,7 +7,7 @@
 
 <h1>${todoForJsp.name}</h1>
 
-<form action="todo">
+<form action="/updateTodo" method="post">
   <input type="hidden" name="action" value="updateTodo">
   <input type="hidden" name="id" value="${todoForJsp.id}">
   <input name="description" value="${todoForJsp.description}">
@@ -15,7 +15,7 @@
 </form>
 
 
-<a href="todo">Start Page</a>
+<a href="/todos">Start Page</a>
 
 </body>
 </html>

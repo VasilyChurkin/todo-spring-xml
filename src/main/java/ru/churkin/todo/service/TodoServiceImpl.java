@@ -1,6 +1,7 @@
 package ru.churkin.todo.service;
 
 import ru.churkin.todo.dao.TodoDao;
+import ru.churkin.todo.exception.TodoNotFoundException;
 import ru.churkin.todo.model.Todo;
 
 import java.util.Collection;
@@ -22,7 +23,7 @@ public class TodoServiceImpl implements TodoService {
     @Override
     public Todo findById(Long id) {
         Todo todoFromDb = todoDao.findById(id);
-        if (todoFromDb == null) throw new RuntimeException("Todo does not exist.");
+        if (todoFromDb == null) throw new TodoNotFoundException("Todo does not exist.");
         return todoFromDb;
     }
 
@@ -33,7 +34,7 @@ public class TodoServiceImpl implements TodoService {
 
     @Override
     public void update(Todo todo) {
-        todoDao.update(todo);
+        if (!todoDao.update(todo)) throw new TodoNotFoundException("Todo with id=" + todo.getId() + " doesn't exist.");
     }
 
     @Override

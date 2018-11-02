@@ -13,7 +13,7 @@ public interface TodoDao {
 
     Collection<Todo> getAll();
 
-    void update(Todo todo);
+    boolean update(Todo todo);
 
     void deleteById(Long id);
 

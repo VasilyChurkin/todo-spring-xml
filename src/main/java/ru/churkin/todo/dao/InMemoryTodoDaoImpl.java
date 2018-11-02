@@ -37,8 +37,14 @@ public class InMemoryTodoDaoImpl implements TodoDao {
         return map.values();
     }
 
-    public void update(Todo todo) {
-        map.put(todo.getId(), todo);
+    public boolean update(Todo todo) {
+        Todo existingTodo = map.get(todo.getId());
+        if (existingTodo == null) {
+            return false;
+        } else {
+            map.put(todo.getId(), todo);
+            return true;
+        }
     }
 
     public void deleteById(Long id) {

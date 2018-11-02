@@ -21,14 +21,14 @@
   <h1>ToDo List</h1>
 
   <div class="search">
-    <form action="todo" method="get">
+    <form action="/search" method="get">
       <input type="hidden" name="action" value="search">
       <input type="text" name="find">
       <input type="submit" value="Search">
     </form>
   </div>
 
-  <form action="todo" method="post">
+  <form action="todos" method="post">
     <label>
       Name: <input type="text" name="todoName">
     </label><br>
@@ -41,8 +41,8 @@
   <ul>
     <c:forEach items="${allTodos}" var="todo">
       <li>
-        <a href="todo?id=${todo.id}&action=remove" style="color:red">X</a>
-        <a href="todos/${todo.id}">${todo.name}</a></li>
+        <a href="/deleteTodo/${todo.id}" style="color:red">X</a>
+        <a href="/todos/${todo.id}">${todo.name}</a></li>
     </c:forEach>
   </ul>
 
