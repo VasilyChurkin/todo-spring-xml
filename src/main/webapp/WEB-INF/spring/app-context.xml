@@ -13,15 +13,35 @@
 
   <context:component-scan base-package="ru.churkin.todo"/>
 
-  <bean id="inMemoryTodoDao" class="ru.churkin.todo.dao.InMemoryTodoDaoImpl"/>
+  <!--<bean id="inMemoryTodoDao" class="ru.churkin.todo.dao.InMemoryTodoDaoImpl"/>-->
 
-  <bean class="ru.churkin.todo.service.TodoServiceImpl">
-    <constructor-arg ref="inMemoryTodoDao"/>
-  </bean>
+  <!--<bean class="ru.churkin.todo.service.TodoServiceImpl">-->
+    <!--<constructor-arg ref="inMemoryTodoDao"/>-->
+  <!--</bean>-->
 
   <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
     <property name="prefix" value="/WEB-INF/views/"/>
     <property name="suffix" value=".jsp"/>
+  </bean>
+
+  <!--<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">-->
+    <!--<property name="driverClassName" value="com.mysql.jdbc.Driver" />-->
+    <!--<property name="url" value="jdbc:mysql://localhost:3306/vasya_database?useUnicode=true&amp;useJDBCCompliantTimezoneShift=true&amp;useLegacyDatetimeCode=false&amp;serverTimezone=UTC&amp;useSSL=false" />-->
+    <!--<property name="username" value="dbo" />-->
+    <!--<property name="password" value="dbo" />-->
+  <!--</bean>-->
+
+  <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+    <property name="driverClass" value="com.mysql.jdbc.Driver" />
+    <property name="jdbcUrl" value="jdbc:mysql://localhost:3306/vasya_database?useUnicode=true&amp;useJDBCCompliantTimezoneShift=true&amp;useLegacyDatetimeCode=false&amp;serverTimezone=UTC&amp;useSSL=false" />
+    <property name="user" value="dbo" />
+    <property name="password" value="dbo" />
+    <property name="maxPoolSize" value="100" />
+    <property name="minPoolSize" value="42" />
+  </bean>
+
+  <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+    <property name="dataSource" ref="dataSource"/>
   </bean>
 
 </beans>

@@ -1,5 +1,6 @@
 package ru.churkin.todo.service;
 
+import org.springframework.stereotype.Service;
 import ru.churkin.todo.dao.TodoDao;
 import ru.churkin.todo.exception.TodoNotFoundException;
 import ru.churkin.todo.model.Todo;
@@ -7,6 +8,7 @@ import ru.churkin.todo.model.Todo;
 import java.util.Collection;
 import java.util.List;
 
+@Service
 public class TodoServiceImpl implements TodoService {
 
     private TodoDao todoDao;
